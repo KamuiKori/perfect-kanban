@@ -1,0 +1,12 @@
+{
+  "cards": [
+    { "id": "1", "title": "Пример карточки", "column": "todo" ,"priority":"low","createdAt":"2026-11-14T10:00:00.000Z","description":"Описание","dueDate":"2026-11-20"},
+    {"id":"2","title":"Второй пример","column":"inProgress","priority":"medium","createdAt":"2026-11-14T10:00:00.000Z"},
+    {"id":"3","title":"Второй пример","column":"done","priority":"high","createdAt":"2026-11-14T10:00:00.000Z","dueDate":"2026-11-10"}
+  ],
+  "columns":[
+    {"id":"todo","title":"Список работ"},
+    {"id":"inProgress","title":"В работе"},
+    {"id":"done","title":"Сделано"}
+  ]
+}

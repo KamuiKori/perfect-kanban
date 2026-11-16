@@ -1,0 +1,121 @@
+.card{
+    background: #fff;
+    border-radius: 6px;
+    padding: 10px 12px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    font-size: 16px;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+}
+.cardInfoBlock{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 10px;
+    border: 1px solid #ebecf0;
+    border-radius: 8px;
+    width: 100%;
+}
+p{
+    margin: 0;
+    margin-top: 10px;
+}
+.empty {
+    color: #9ca3af;
+}
+.moveButtons{
+    display: flex;
+    gap: 6px;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+.moveButton{
+    width: 28px;
+    padding: 0;
+    background: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    color: #6b7280;
+    font: inherit;
+    cursor: pointer;
+    transition: background .2s, color .2s, border-color .2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.moveButton:hover{
+    background: #eff6ff, ;
+    color: #2563eb, ;
+    border-color: #bfdbfe;
+}
+.buttonsWrapper{
+    margin-top: 16px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.deleteButton{
+    padding: 8px 16px;
+    background: #fff;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+    border-radius: 6px;
+    font:inherit;
+    cursor: pointer;
+    transition: background .2s, color .2s, border-color .2s;
+}
+.editButton{
+    padding: 8px 16px;
+    background: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font:inherit;
+    cursor: pointer;
+    color: #1f2937;
+    transition: background .2s, color .2s, border-color .2s;
+}
+.editButton:hover{
+    background: #2563eb;
+    color: #fff;
+    border-color: #2563eb;
+}
+.deleteButton:hover{
+    background: #dc2626;
+    color: #fff;
+    border-color: #dc2626;
+}
+.dot{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: block;
+    margin-right: 10px;
+}
+.low{
+    background: #22c55e;
+}
+.medium{
+    background: #eab308;
+}
+.high{
+    background: #ef4444;
+}
+.titleRow{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+.deadlineText{
+    font-size: 10px;
+}
+.overdue{
+    color: #ef4444;
+}
+.normalDue{
+    color: #22c55e;
+}

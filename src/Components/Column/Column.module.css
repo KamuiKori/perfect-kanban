@@ -1,0 +1,89 @@
+.column{
+    width: 280px;
+    flex-shrink: 0;
+    background: #ebecf0;
+    border-radius: 8px;
+    padding: 12px;
+    position: relative;
+}
+.column:hover .deleteButton{
+    opacity: 1;
+}
+.title{
+    margin:0 0 12px;
+    font-size: 16px;
+    font-weight: 600;
+}
+.cards{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.addButton{
+    width: 100%;
+    background: transparent;
+    border: 1px solid #9ca3af;
+    border-radius: 6px;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 10px 12px;
+    font-size: 16px;
+}
+.addButton:hover{
+    background: #666;
+    color: #fff;
+    transition: .3s ease;
+    border: 1px solid #666;
+}
+.column:hover .addWrapper{
+    max-height: 48px;
+    opacity: 1;
+}
+.addWrapper{
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height .2s, opacity .2s;
+    margin-bottom: 8px;
+}
+.deleteButton {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    transition: .3s ease;
+}
+
+.deleteButton::before,
+.deleteButton::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 2px;
+    background: #6b7280;
+    border-radius: 1px;
+}
+
+.deleteButton::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.deleteButton::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.deleteButton:hover::before,
+.deleteButton:hover::after {
+    background: #111827;
+}
+.deleteButton:focus-visible { 
+    opacity: 1; 
+}

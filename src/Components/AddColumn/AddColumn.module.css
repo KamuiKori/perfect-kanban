@@ -1,0 +1,44 @@
+.addNewColumnWrapper{
+    width: 280px;
+    flex-shrink: 0;
+    background: #ebecf0;
+    border-radius: 8px;
+    padding: 12px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.addNewColumnButton{
+    width: 100%;
+    background: transparent;
+    border: 1px solid #9ca3af;
+    border-radius: 6px;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 10px 12px;
+    font-size: 16px;
+}
+.addNewColumnButton:hover{
+    background: #666;
+    color: #fff;
+    transition: .3s ease;
+    border: 1px solid #666;
+}
+.addButton{
+    align-self: flex-end;
+    padding: 8px 16px;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font: inherit;
+    cursor: pointer;
+    transition: background .3s;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}

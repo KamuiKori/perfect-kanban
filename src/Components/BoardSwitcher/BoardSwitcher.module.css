@@ -1,0 +1,85 @@
+.switcherWrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 200px;
+    margin-right: 20px;
+    padding: 20px;
+    min-height: 100vh;
+    align-self: stretch;
+    background-color: #fff;
+    border-right: 1px solid #e5e7eb;
+    flex-shrink: 0;
+}
+.boardRow{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding-right: 4px;
+    border-radius: 6px;
+    transition: .2s ease;
+}
+.boardRow:hover{
+    background-color: #e5e7eb;
+}
+.boardRow:has(.active),
+.boardRow:has(.active):hover{
+    background-color: #6b7280;
+}
+.link{
+    flex: 1;
+    text-decoration: none;
+    color: #1f2937;
+    padding: 8px 12px;
+    text-align: left;
+    background-color: transparent;
+    transition: .2s ease;
+}
+.active{
+    color: #fff;
+}
+.deleteBoardButton{
+    position: relative;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    cursor: pointer;
+    opacity: 0;
+    transition: .2s ease;
+}
+.boardRow:hover .deleteBoardButton{
+    opacity: 1;
+}
+.deleteBoardButton:hover{
+    background-color: #fee2e2;
+}
+.deleteBoardButton::before,
+.deleteBoardButton::after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 2px;
+    background-color: #9ca3af;
+    transition: .2s ease;
+}
+.deleteBoardButton::before{
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+.deleteBoardButton::after{
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+.boardRow:has(.active) .deleteBoardButton::before,
+.boardRow:has(.active) .deleteBoardButton::after{
+    background-color: #e5e7eb;
+}
+.deleteBoardButton:hover::before,
+.deleteBoardButton:hover::after,
+.boardRow:has(.active) .deleteBoardButton:hover::before,
+.boardRow:has(.active) .deleteBoardButton:hover::after{
+    background-color: #b91c1c;
+}

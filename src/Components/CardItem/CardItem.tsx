@@ -4,8 +4,9 @@ import styles from './CardItem.module.css'
 import Modal from "../Modal/Modal"
 import { useDispatch, useSelector } from "react-redux"
 import { type RootState } from "../../../store"
-import { deleteCard, moveCard, updateCard } from "../../../boardSlice"
+import {deleteCard,patchCard } from "../../../boardSlice"
 import EditCardForm from "../EditCardForm/EditCardForm"
+import { type AppDispatch } from '../../../store'
 
 type CardProps = {
     card:Card
@@ -24,7 +25,7 @@ function CardItem({card}:CardProps){
     const column = columns[columnNumber]
     const prevColumn = columns[columnNumber-1]
     const nextColumn = columns[columnNumber+1]
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>()
     const dueTime = new Date(card.dueDate + 'T00:00:00').getTime()
     const todayStart = new Date().setHours(0, 0, 0, 0)
     const isOverdue = card.dueDate? dueTime< todayStart:false;
@@ -37,11 +38,11 @@ function CardItem({card}:CardProps){
     }
     function prevButtonClickHandler(e:React.MouseEvent<HTMLButtonElement>){
         e.stopPropagation()
-        dispatch(moveCard({id:card.id,column:prevColumn.id}))
+        dispatch(patchCard({id:card.id,changes:{column:prevColumn.id}}))
     }
     function nextButtonClickHandler(e:React.MouseEvent<HTMLButtonElement>){
         e.stopPropagation()
-        dispatch(moveCard({id:card.id,column:nextColumn.id}))
+        dispatch(patchCard({id:card.id,changes:{column:nextColumn.id}}))
     }
     function deleteBtnClickHandler(e:React.MouseEvent<HTMLButtonElement>){
         e.stopPropagation()
@@ -58,7 +59,7 @@ function CardItem({card}:CardProps){
         setIsEditing(false)
     }
     function onSaveHandler(card:Card){
-        dispatch(updateCard(card))
+        dispatch(patchCard({id:card.id,changes:card}))
         onCancelHandler()
     }
     return (

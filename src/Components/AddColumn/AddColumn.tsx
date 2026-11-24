@@ -2,12 +2,15 @@ import { useState } from 'react'
 import styles from './AddColumn.module.css'
 import Modal from '../Modal/Modal'
 import { useDispatch } from 'react-redux'
-import { addColumn } from '../../../boardSlice'
+import { createColumn } from '../../../boardSlice'
+import { useParams } from 'react-router-dom'
+import { type AppDispatch } from '../../../store'
 
 function AddColumn(){
     const [isModalOpen,setIsModalOpen] = useState(false)
     const [inputVal,setInputVal] = useState('')
-    const dispatch = useDispatch()
+    const dispatch = useDispatch<AppDispatch>()
+    const {boardId} = useParams()
 
     function AddColumnHandler(){
         setIsModalOpen(true)
@@ -20,8 +23,8 @@ function AddColumn(){
     }
     function submitHandler(e:React.FormEvent<HTMLFormElement>){
         e.preventDefault();
-        if(inputVal.trim().length > 0){
-            dispatch(addColumn({id:crypto.randomUUID(),title:inputVal.trim()}))
+        if(inputVal.trim().length > 0 && boardId){
+            dispatch(createColumn({id:crypto.randomUUID(),title:inputVal.trim(),boardId}))
             setInputVal('')
             setIsModalOpen(false)
         }

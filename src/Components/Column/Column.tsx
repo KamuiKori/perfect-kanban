@@ -5,6 +5,7 @@ import styles from './Column.module.css'
 import { useState } from "react"
 import AddTaskModal from '../AddTaskModal/AddTaskModal'
 import { deleteColumn } from "../../../boardSlice"
+import { type AppDispatch } from '../../../store'
 
 type ColumnProps = {
     id:string,
@@ -13,7 +14,7 @@ type ColumnProps = {
 function Column({id,title}:ColumnProps){
     const [isModalOpen,setIsModalOpen] = useState(false)
     const cards = useSelector((state:RootState)=> state.board.cards)
-    const dispatch = useDispatch()
+    const dispatch = useDispatch<AppDispatch>()
     const filtredCards = cards.filter((card)=>{
         return card.column === id
     })

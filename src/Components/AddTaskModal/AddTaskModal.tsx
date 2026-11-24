@@ -1,10 +1,13 @@
 import { useDispatch } from 'react-redux'
 import style from './AddTaskModal.module.css'
 import {useState} from 'react'
-import { addCard } from '../../../boardSlice'
+import { createCard } from '../../../boardSlice'
 import type { Card } from '../../../types'
 import type { Priority } from '../../../types'
 import Modal from '../Modal/Modal'
+import { useParams } from 'react-router-dom'
+import { type AppDispatch } from '../../../store'
+
 
 type PopupProps = {
     onClose:() => void,
@@ -16,16 +19,17 @@ function AddTaskModal(props:PopupProps){
     const [textareaValue,setTextareaValue] = useState('')
     const [dueDateValue,setDueDateValue] = useState('')
     const [priority,setPriority] = useState<Priority | ''>('')
-    const dispatch = useDispatch()
+    const dispatch = useDispatch<AppDispatch>()
+    const {boardId} = useParams()
 
     function submitFormHandler(e:React.FormEvent<HTMLFormElement>){
         e.preventDefault()
         if(priority === ''){
             return
         }
-        if(inputValue.trim().length > 0){
-            const card:Card = {title:inputValue.trim(),id:crypto.randomUUID(),column:columnId,createdAt:new Date().toISOString(),priority:priority,description:textareaValue.trim() || undefined,dueDate:dueDateValue || undefined}
-            dispatch(addCard(card))
+        if(inputValue.trim().length > 0 && boardId){
+            const card:Card = {title:inputValue.trim(),id:crypto.randomUUID(),column:columnId,createdAt:new Date().toISOString(),priority:priority,description:textareaValue.trim() || undefined,dueDate:dueDateValue || undefined,boardId}
+            dispatch(createCard(card))
             setInputValue('')
             onClose()
         }

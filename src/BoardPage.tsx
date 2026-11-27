@@ -6,8 +6,9 @@ import { fetchBoard } from '../boardSlice'
 import styles from './App.module.css'
 import AddColumn from './Components/AddColumn/AddColumn'
 import { useParams } from 'react-router-dom'
+import { type Priority } from '../types'
 
-function BoardPage(){
+function BoardPage({ searchValue, priorityFilter }: { searchValue: string, priorityFilter: Priority | 'all' }){
     const columns = useSelector((state:RootState)=>state.board.columns)
     const status = useSelector((state:RootState)=>state.board.status)
     const error = useSelector((state:RootState)=>state.board.error)
@@ -35,7 +36,7 @@ function BoardPage(){
             <>
             {
             columns.map((column)=>{
-                return <Column key={column.id} id={column.id} title={column.title}/>
+                return <Column searchValue={searchValue} priorityFilter={priorityFilter} key={column.id} id={column.id} title={column.title}/>
             })
             }
             <AddColumn/>

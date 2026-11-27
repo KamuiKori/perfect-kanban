@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isRejected } from "@reduxjs/toolkit";
 import {type BoardState } from "./types";
 import {type PayloadAction } from "@reduxjs/toolkit";
 import {type Card } from "./types";
@@ -108,6 +108,18 @@ export const deleteColumn = createAsyncThunk('board/deleteColumn',async(columnId
     }
     return columnId
 })
+export const patchColumn = createAsyncThunk('board/patchColumn', async({ id, changes }: { id: string, changes: Partial<BoardColumn> })=>{
+    const patchResponse = await fetch(`http://localhost:3001/columns/${id}`,{
+        method:'PATCH',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(changes)
+    })
+    if(!patchResponse.ok){
+        throw new Error('Не удалось изменить колонку')
+    }
+    const newColumn:BoardColumn = await patchResponse.json();
+    return newColumn
+})
 export const deleteBoard = createAsyncThunk('board/deleteBoard',async(boardId:string)=>{
     const [columnsResponse,cardsResponse] = await Promise.all([
         fetch(`http://localhost:3001/columns?boardId=${boardId}`),
@@ -147,13 +159,17 @@ const initialState:BoardState = {
     status:'idle',
     error:null,
     columns:[],
-    boards:[]
+    boards:[],
+    actionError:null
 }
 
 const board = createSlice({
     name:'board',
     initialState,
     reducers:{
+        cleanActionError(state){
+            state.actionError = null
+        }
     },
     extraReducers:(builder) =>{
         builder
@@ -198,6 +214,16 @@ const board = createSlice({
             .addCase(deleteBoard.fulfilled,(state,action)=>{
                 state.boards = state.boards.filter((board)=>board.id !== action.payload)
             })
+            .addCase(patchColumn.fulfilled,(state,action)=>{
+                const colIndex = state.columns.findIndex((col)=>col.id === action.payload.id)
+                if(colIndex !== -1){
+                    state.columns[colIndex] = action.payload
+                }
+            })
+            .addMatcher(isRejected,(state,action)=>{
+                state.actionError = action.error.message ?? 'Неизвестная ошибка'
+            })
     }
 })
+export const {cleanActionError} = board.actions
 export default board.reducer

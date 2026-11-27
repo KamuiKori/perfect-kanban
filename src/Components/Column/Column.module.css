@@ -87,3 +87,21 @@
 .deleteButton:focus-visible { 
     opacity: 1; 
 }
+.titleForm{
+    margin: 0;
+}
+.titleInput{
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 4px 8px;
+    font: inherit;
+    font-weight: 600;
+    color: #1f2937;
+    background-color: #fff;
+    border: 1px solid #2563eb;
+    border-radius: 6px;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    margin-bottom: 10px;
+}
